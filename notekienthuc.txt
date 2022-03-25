@@ -1,0 +1,27 @@
+#4:
+- JSON.stringify(obj) giúp convert obj sang string
+#12:
+- merge state là tự động cộng gộp
+- hook no merge state, có nghĩa là k tự cộng gộp
+*useState:
+- dùng khi muốn dữ liệu thay đổi thì giao diện tự động đc cập nhật(re-render)
+- cú pháp const [state, setState] = useState(initState)
++ nhận đối số đầu vào là initState(giá trị khởi tạo) sau đó return ra 1 mảng:
+có 2 phần tử:
+ `1 là state, trong lần đầu render sẽ nhận giá trị khởi tại ở initState
+ `2 là setState là hàm, re-render state
++ Component đc re-render sau khi 'setState'
++ initState chỉ dùng cho lần đầu, nó sẽ gán giá trị vào state
++ setState với callback?
+
++ initState với callback?
+ ` truyền func vào initState nó sẽ lấy giá trị return làm giá trị khởi tạo
++ setState là thay thế state bằng giá trị mới
+
+
+- const newTodo = { id: Math.floor(Math.random() * 1000), title: changename } 
+  setTodo([...todo, newTodo]) phải xài như này để cộng gộp 
+  ... là copy dữ liệu cũ rồi newTodo + dữ liệu mới vào
+
+*useEffect chạy bất cứ khi nào giao diện bị re-render
+- useEffect = componentDitmount
