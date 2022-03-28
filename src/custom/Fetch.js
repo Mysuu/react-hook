@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import moment from 'moment'
 
-function useFetch(url) {
+function useFetch(url, isCovidData) {
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
@@ -22,7 +22,7 @@ function useFetch(url) {
                 //nếu ..., ? là thì, : là else
                 //đặt tên biến là data, và nếu nó có phản hồi về và phản hồi có biến data và có dữ liệu của cục res.data
                 //thì sẽ lấy dữ liệu cục ấy còn nếu lỗi thì sẽ gán gtri bằng 1 mảng rỗng
-                if (data && data.length > 0) {
+                if (data && data.length > 0 && isCovidData === true) {
                     data.map(item => {
                         item.Date = moment(item.Date).format('DD-MM-YYYY')
                         return item

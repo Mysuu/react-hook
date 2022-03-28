@@ -7,6 +7,8 @@ import Navbar from './components/Navbar';
 import Covid from './components/Covid';
 import Countdown from './components/Countdown';
 import Todolist from './components/Todolist';
+import Blog from './components/Blog';
+import DetailBlog from './components/DetailBlog';
 
 function App() {
 
@@ -27,6 +29,9 @@ function App() {
             <Route path="/" element={<Covid />} />
             <Route path="/countdown" element={<Countdown />} />
             <Route path="/todo" element={<Todolist />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<DetailBlog />} />
+
           </Routes>
         </BrowserRouter>
       </header>

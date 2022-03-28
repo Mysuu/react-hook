@@ -17,7 +17,7 @@ function Todo(props) {
                 return (
                     <div key={item.id}>
                         <li className='todo-child' >{item.title}
-                            &nbsp; <span onClick={() => handleDelete(item.id)}>x</span></li>
+                            &nbsp; <span style={{ cursor: 'pointer' }} onClick={() => handleDelete(item.id)}>x</span></li>
                     </div>
                 )
             })}

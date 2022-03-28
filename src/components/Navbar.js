@@ -8,6 +8,7 @@ function Navbar() {
             <NavLink activeclassname="active" to="/">Home</NavLink>
             <NavLink to="/todo">Todo</NavLink>
             <NavLink to="/countdown">Countdown</NavLink>
+            <NavLink to="/blog">Blog</NavLink>
             <NavLink to="/ytb">Youtube</NavLink>
         </div >
     )
