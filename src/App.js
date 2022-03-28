@@ -5,6 +5,8 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Todo from './components/Todo';
 import Covid from './components/Covid';
+import CountdownClass from './components/CountdownClass';
+import CountdownHook from './components/CountdownHook';
 
 function App() {
   //////* useState dạng string
@@ -56,6 +58,10 @@ function App() {
 
   }
 
+  const onTimesup = () => {
+    // alert('hết giờ')
+  }
+
   //re-render
   return (
     <div className="App">
@@ -63,6 +69,11 @@ function App() {
       <header className="App-header">
         <Navbar />
         <img src={logo} className="App-logo" alt="logo" />
+        <CountdownClass
+          onTimesup={onTimesup}
+        />
+        <span>--------</span>
+        <CountdownHook />
         <h1>Hello im {name}</h1>
         {/* <input value={changename} onChange={(e) => handleChange(e)}></input>
         <br />

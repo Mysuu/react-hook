@@ -25,3 +25,9 @@ có 2 phần tử:
 
 *useEffect chạy bất cứ khi nào giao diện bị re-render
 - useEffect = componentDitmount
+
+*async để xử lý bất đồng bộ, cho tất cả chạy 1 lúc, k cần theo thứ tự
+
+*trong 1 hàm nếu không có () thì nó sẽ hiểu là đang muốn tham chiếu đến hàm
+còn nếu có thì nó hiểu là đang muốn gọi đến hàm đó
+async await giúp lấy đc data

@@ -1,27 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import './Covid.css'
-import axios from 'axios'
+import useFetch from '../custom/Fetch'
 import moment from 'moment'
 
 function Covid() {
 
-    const [covid, setCovid] = useState()
+    const today = new Date(new Date().setHours(0, 0, 0, 0))
+    const priorDate = moment().subtract(31, 'days')
 
-    //lấy data về
-    useEffect(async () => {
-        let res = await axios.get('https://api.covid19api.com/country/vietnam?from=2022-02-25T00%3A00%3A00Z&to=2022-03-25T00%3A00%3A00Z')
-        let data = res && res.data ? res.data : []
-        //đặt tên biến là data, và nếu nó có phản hồi về và phản hồi có biến data và có dữ liệu của cục res.data
-        //thì sẽ lấy dữ liệu cục ấy còn nếu lỗi thì sẽ gán gtri bằng 1 mảng rỗng
-        if (data && data.length > 0) {
-            data.map(item => {
-                item.Date = moment(item.Date).format('DD-MM-YYYY')
-                return item
-            })
-        }
-        setCovid(data) //sau khi có biến data gán ngược giá trị vào cái covid thông qua setCovid(ứng dụng useState)
-    }, []) //để cho hàm này chỉ chạy 1 lần truyền vào 1 cái dependence []
+
+    const { data: dataCovid, error, loading }
+        = useFetch(`https://api.covid19api.com/country/vietnam?from=${priorDate.toISOString()}&to=${today.toISOString()}`)
+    // useFetch('https://api.covid19api.com/country/vietnam?from=2022-02-25T00%3A00%3A00Z&to=2022-03-25T00%3A00%3A00Z')
+    // ${} để chèn một biến, nối chuỗi nhanh
+    // `` đường dẫn có thể chèn chuỗi vào với ${}
 
     return (
         <div style={{ width: '90%' }}>
@@ -36,7 +29,8 @@ function Covid() {
                     </tr>
                 </thead>
                 <tbody>
-                    {covid && covid.length > 0 && covid.map(item => {
+                    {/* nếu có biến dataCovid và dataCovid.length > 0 có nghĩa là có tồn tại mảng */}
+                    {error === false && loading === false && dataCovid && dataCovid.length > 0 && dataCovid.map(item => {
                         return (
                             <tr key={item.ID}>
                                 <td>{item.Date}</td>
@@ -46,6 +40,20 @@ function Covid() {
                             </tr>
                         )
                     })}
+                    {loading === true &&
+                        <tr>
+                            <td colSpan='5' style={{ textAlign: 'center' }}>
+                                Loading...
+                            </td>
+                        </tr>
+                    }
+                    {error === true &&
+                        <tr>
+                            <td colSpan='5' style={{ textAlign: 'center' }}>
+                                Error...
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
