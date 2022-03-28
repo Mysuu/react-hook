@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
 function CountdownHook() {
     const [count, setCount] = useState('10')
@@ -20,5 +20,4 @@ function CountdownHook() {
         <div>Hook Countdown: {count}</div>
     )
 }
-
-export default CountdownHook
+export default CountdownHook;

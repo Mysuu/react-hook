@@ -11,9 +11,13 @@ function useFetch(url) {
     //async là tín hiệu báo cho thằng js biết là đang muốn sd async await hay là cái func này là 1 promises 
     useEffect(() => {
 
-        try {
-            async function fetchData() {
-                let res = await axios.get(url)
+        const ourRequest = axios.CancelToken.source()
+        async function fetchData() {
+            try {
+
+                let res = await axios.get(url, {
+                    cancelToken: ourRequest.token
+                })
                 let data = res && res.data ? res.data : []
                 //nếu ..., ? là thì, : là else
                 //đặt tên biến là data, và nếu nó có phản hồi về và phản hồi có biến data và có dữ liệu của cục res.data
@@ -29,13 +33,23 @@ function useFetch(url) {
                 setLoading(false)
                 setError(false)
             }
-            fetchData()
-        } catch (error) {
-            setError(true)
-            setLoading(false)
+            catch (error) {
+                if (axios.isCancel(error)) {
+                    console.log('Request canceled', error.message)
+                } else {
+                    setError(true)
+                    setLoading(false)
+                }
+            }
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []) //để cho hàm này chỉ chạy 1 lần nên truyền vào 1 cái dependence []
+        setTimeout(() => {
+            fetchData()
+        }, 3000)
+        return () => {
+            ourRequest.cancel('Operation canceled by the user')
+        }
+    }, [url])
+    //để cho hàm này chỉ chạy 1 lần nên truyền vào 1 cái dependence []
     return {
         data, loading, error
     }

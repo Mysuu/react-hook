@@ -6,12 +6,11 @@ import moment from 'moment'
 
 function Covid() {
 
-    const today = new Date(new Date().setHours(0, 0, 0, 0))
-    const priorDate = moment().subtract(31, 'days')
-
+    const today = moment().startOf('day').toISOString(true)
+    const priorDate = moment().startOf('day').subtract(31, 'days').toISOString(true)
 
     const { data: dataCovid, error, loading }
-        = useFetch(`https://api.covid19api.com/country/vietnam?from=${priorDate.toISOString()}&to=${today.toISOString()}`)
+        = useFetch(`https://api.covid19api.com/country/vietnam?from=${priorDate}&to=${today}`)
     // useFetch('https://api.covid19api.com/country/vietnam?from=2022-02-25T00%3A00%3A00Z&to=2022-03-25T00%3A00%3A00Z')
     // ${} để chèn một biến, nối chuỗi nhanh
     // `` đường dẫn có thể chèn chuỗi vào với ${}
@@ -23,9 +22,9 @@ function Covid() {
                 <thead>
                     <tr>
                         <th>Ngày</th>
-                        <th>Số ca</th>
-                        <th>Chết</th>
-                        <th>Khỏi bệnh</th>
+                        <th>Tổng số ca nhiễm</th>
+                        <th>Đã chết</th>
+                        <th>Khỏi bệnh hôm nay</th>
                     </tr>
                 </thead>
                 <tbody>

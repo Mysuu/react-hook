@@ -5,6 +5,12 @@ class CountdownClass extends Component {
         count: 10
     }
 
+    componentWillUnmount() {
+        if (this.timer) {
+            clearInterval(this.timer)
+        }
+    }
+
     componentDidMount() {
         this.timer = setInterval(() => {
             this.setState({
@@ -30,5 +36,4 @@ class CountdownClass extends Component {
         );
     }
 }
-
-export default CountdownClass;
+export default CountdownClass
