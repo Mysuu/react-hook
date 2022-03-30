@@ -16,7 +16,7 @@ có 2 phần tử:
 
 + initState với callback?
  ` truyền func vào initState nó sẽ lấy giá trị return làm giá trị khởi tạo
-+ setState là thay thế state bằng giá trị mới
++ setState là thay thế state bằng giá trị mới, re-render lại trang
 
 
 - const newTodo = { id: Math.floor(Math.random() * 1000), title: changename } 

@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import './Blog.scss'
+import axios from 'axios'
 
-function Addnewblog() {
+function Addnewblog(props) {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
-    const handleClick = (e) => {
+
+    const handleClick = async (e) => {
         // e.preventDefault()//k cho load lại trang khi xài form
         // if (title === '' || title === null || title === undefined) 
         if (!title) {//dùng ! trả ra giá trị là true, ngươc với 3 cái ở trên
@@ -15,7 +17,20 @@ function Addnewblog() {
             alert('Chưa nhập content kìa em êi')
             return
         }
-        console.log('check data', title, content);
+        let data = {
+            title: title,
+            body: content,
+            userId: 1
+        }
+
+        let res = await axios.post('https://jsonplaceholder.typicode.com/posts', data)
+        if (res && res.data) {
+            let newBlog = res.data
+            props.handleAddNew(newBlog)
+        }
+
+        // console.log('check res post data', res);
+        // console.log('check data', title, content);
     }
     return (
         <div className='add-new-container'>
