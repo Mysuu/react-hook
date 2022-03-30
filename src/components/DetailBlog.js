@@ -1,11 +1,19 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 // import * as qs from "query-string";
 
 function DetailBlog() {
-    const { id } = useParams()
+    const { id } = useParams() //lấy giá trị của biến id bên App.js
+    const navigate = useNavigate()
+    const handleBack = () => {
+        navigate('/blog')
+    }
     return (
-        <div>DetailBlog with id = {id}</div>
+        <>
+            <div><span style={{ cursor: 'pointer' }} onClick={handleBack}>&lt;-- Back</span></div>
+            <br />
+            <div>DetailBlog with id = {id}</div>
+        </>
 
     )
 }

@@ -31,7 +31,7 @@ function App() {
             <Route path="/todo" element={<Todolist />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<DetailBlog />} />
-
+            {/* :id là tham số động, : là bắt đầu của tham số, id là tên biến đc đặt */}
           </Routes>
         </BrowserRouter>
       </header>
