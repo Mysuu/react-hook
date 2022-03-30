@@ -31,3 +31,5 @@ có 2 phần tử:
 *trong 1 hàm nếu không có () thì nó sẽ hiểu là đang muốn tham chiếu đến hàm
 còn nếu có thì nó hiểu là đang muốn gọi đến hàm đó
 async await giúp lấy đc data
+
+* truyền data hay func từ con sang cha xài props

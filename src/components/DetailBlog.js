@@ -7,6 +7,7 @@ function DetailBlog() {
     const { id } = useParams() //lấy giá trị của biến id bên App.js
     const navigate = useNavigate()
 
+    // eslint-disable-next-line no-unused-vars
     const { data: dataBlogDetail, error, loading }
         = useFetch(`https://jsonplaceholder.typicode.com/posts/${id}`, false)
 

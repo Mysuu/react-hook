@@ -10,6 +10,8 @@ import Todolist from './components/Todolist';
 import Blog from './components/Blog';
 import DetailBlog from './components/DetailBlog';
 import Addnewblog from './components/Addnewblog';
+import Notfound from './components/Notfound';
+import Youtube from './components/Youtube';
 
 function App() {
 
@@ -34,6 +36,8 @@ function App() {
             <Route path="/blog/:id" element={<DetailBlog />} />
             {/* :id là tham số động, : là bắt đầu của tham số, id là tên biến đc đặt */}
             <Route path="/addnewblog" element={<Addnewblog />} />
+            <Route path="/ytb" element={<Youtube />} />
+            <Route path="*" element={<Notfound />} />
           </Routes>
         </BrowserRouter>
       </header>
