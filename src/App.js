@@ -9,6 +9,7 @@ import Countdown from './components/Countdown';
 import Todolist from './components/Todolist';
 import Blog from './components/Blog';
 import DetailBlog from './components/DetailBlog';
+import Addnewblog from './components/Addnewblog';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<DetailBlog />} />
             {/* :id là tham số động, : là bắt đầu của tham số, id là tên biến đc đặt */}
+            <Route path="/addnewblog" element={<Addnewblog />} />
           </Routes>
         </BrowserRouter>
       </header>
