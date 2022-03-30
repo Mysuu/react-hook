@@ -18,7 +18,7 @@ class CountdownClass extends Component {
             })
         }, 1000)
     }
-
+    //prev tượng trưng cho giá trị quá khứ
     componentDidUpdate(prevProps, prevState) {
         if (prevState.count !== this.state.count && this.state.count === 0) {
             if (this.timer) {
